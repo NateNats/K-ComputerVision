@@ -20,11 +20,39 @@ def debug_img(img, title=None, figure_size=(12, 8), waitkey=False):
     if waitkey:
         plt.waitforbuttonpress()
 
+# translation
+def translation(img):
+    pass
+
+# skewing
+def skewing(img):
+    pass
+
 # rotation function
-def rotation(img, angle):
+def rotate(img, angle):
     frame = Image.fromarray(img)
     width, height = frame.size
     theta = math.radians(angle)
-    
+    sin = math.sin(theta)
+    cos = math.cos(theta)
 
-    pass
+    #   [ X^         [Cos theta     -Sin theta  ]   [ x - xc
+    #           =
+    #   y^ ]         [Sin theta       Cos theta ]    y  - yc ]
+    new_width = int(abs(width * cos) + abs(height * sin))
+    new_height = int(abs(width * sin) + abs(height * cos))
+    rotated_img = Image.new('RGB', (new_width, new_height), (0, 0, 0))
+    xc, yc = (width // 2), (height // 2)
+    new_xc, new_yc = (new_width // 2), (new_height // 2)
+
+    for x in range(width):
+        for y in range(height):
+            x_shifted = x - xc
+            y_shifted = y - yc
+            new_x = int(x_shifted * cos - y_shifted * sin + new_xc)
+            new_y = int(x_shifted * sin + y_shifted * cos + new_yc)
+
+            if 0 <= new_x < width and 0 <= new_y < height:
+                rotated_img.putpixel((new_x, new_y), frame.getpixel((x, y)))
+
+    return rotated_img

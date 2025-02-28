@@ -8,4 +8,9 @@ img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
 
 # scaling
 scaled_img = cf.scaling(img, 0.5, 0.5)
-cf.debug_img(scaled_img, "scaled image", (12, 8), True)
+
+# rotation
+rotated_img = cf.rotate(img, 180)
+
+# translation
+cf.debug_img(rotated_img, "scaled image", (12, 8), True)
