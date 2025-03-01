@@ -4,7 +4,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 # read image
-img = cv2.imread('image.jpeg')
+img = cv2.imread( 'C:\Users\LEGION\OneDrive\Documents\1. kuliah\komputer vision\K-ComputerVision\Week 2\image.jpeg')
 img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
 
 # scaling
