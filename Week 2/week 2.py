@@ -1,5 +1,6 @@
 import cv2
 import customfunc as cf
+import numpy as np
 import matplotlib.pyplot as plt
 
 # read image
@@ -17,7 +18,17 @@ img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
 # translated_img.show()
 
 # skewing
-skewed_img = cf.skewing(img, 0.3, 0.3)
-skewed_img.show()
+# skewed_img = cf.skewing(img, 0.3, 0.3)
+# skewed_img.show()
+
+# grayscale
+gray_img = cf.grayscale(img)
+
+# noise reduction
+nr_img = cf.noise_reduction(np.array(gray_img), kernel_size=3, filter="mean")
+
+# thresholding
+th_img = cf.thresholding(np.array(nr_img), threshold=128)
+th_img.show()
 
 # cf.debug_img(rotated_img, "translated image", (12, 8), True)
